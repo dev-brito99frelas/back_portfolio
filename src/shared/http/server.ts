@@ -1,11 +1,11 @@
-import 'reflect-metadata';
+// import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 // import { errors } from 'celebrate';
 import routes from './../routes';
 import AppError from '@shared/errors/AppError';
-import '@shared/typeorm';
+// import '@shared/typeorm';
 
 const app = express();
 app.use(cors());
@@ -35,5 +35,5 @@ app.use(
 );
 
 app.listen(3333, () => {
-    console.log('Api do meu blog rodando liso...');
+    console.log('Api do meu blog rodando liso...:robot:');
 });
