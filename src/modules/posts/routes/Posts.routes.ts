@@ -20,8 +20,8 @@ postsRouter.post(
     celebrate({
         [Segments.BODY]: {
             title: Joi.string().required(),
-            content: Joi.number().precision(2).required(),
-            img_url: Joi.number().required(),
+            content: Joi.string().required(),
+            img_url: Joi.string().required(),
         },
     }),
     postsController.create,
@@ -33,8 +33,8 @@ postsRouter.put(
         [Segments.PARAMS]: { id: Joi.string().uuid().required() },
         [Segments.BODY]: {
             title: Joi.string().required(),
-            content: Joi.number().precision(2).required(),
-            img_url: Joi.number().required(),
+            content: Joi.string().required(),
+            img_url: Joi.string().required(),
         },
     }),
     postsController.update,

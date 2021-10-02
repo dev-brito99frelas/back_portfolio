@@ -14,7 +14,7 @@ class Post {
     @Column()
     title: string;
 
-    @Column('text')
+    @Column()
     content: string;
 
     @Column()
