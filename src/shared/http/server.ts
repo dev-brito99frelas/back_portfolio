@@ -21,8 +21,6 @@ app.use(
         response: Response,
         next: NextFunction,
     ) => {
-        /**
-         * @description se o erro for uma instancia da nossa classe, usamos a classe para tratar*/
         if (error instanceof AppError) {
             return response.status(error.statusCode).json({
                 status: 'error',
@@ -30,7 +28,6 @@ app.use(
             });
         }
         return response.status(500).json({
-            //se não for tratamos como desconhecido
             status: 'error',
             message: 'Internal server Error',
         });

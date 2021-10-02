@@ -15,15 +15,15 @@ export class CreatePosts1633097156637 implements MigrationInterface {
                     },
                     {
                         name: 'title',
-                        type: 'varchar[100]',
+                        type: 'varchar',
                     },
                     {
                         name: 'content',
-                        type: 'text',
+                        type: 'varchar',
                     },
                     {
                         name: 'img_url',
-                        type: 'varchar[150]',
+                        type: 'varchar',
                     },
                     {
                         name: 'created_at',
