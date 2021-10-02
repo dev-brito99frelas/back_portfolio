@@ -1,8 +1,6 @@
 import { Router } from 'express';
+import postsRouter from '@modules/posts/routes/Posts.routes';
 
 const routes = Router();
-
-routes.get('/', (request, response) => {
-    return response.json({ message: 'hellow dev!' });
-});
+routes.use('/posts', postsRouter);
 export default routes;
