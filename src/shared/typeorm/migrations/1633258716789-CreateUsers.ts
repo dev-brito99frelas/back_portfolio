@@ -34,10 +34,12 @@ export class CreateUsers1633258716789 implements MigrationInterface {
                     {
                         name: 'data_nasc',
                         type: 'timestamp',
+                        isNullable: true,
                     },
                     {
                         name: 'type_user',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',
