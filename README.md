@@ -1,7 +1,7 @@
 # blogdoCL
-## Necessario para executar  
+## Necessário para executar  
 - Ter node instalado em sua máquina  
-- Ter uma instancia do Postgres rodando em sua máquina na porta 5432
+- Ter uma instância do Postgres rodando em sua máquina na porta 5432
 - Criar na raiz do desse projeto um arquivo de nome **ormconfig.json** com a seguinte configuração de banco,"ou parecida":  
 ```
 {
@@ -26,7 +26,7 @@
 ```
 npm install
 ```  
-- Baixado todas as dependencias com npm, agora é preciso criar o banco via postgres com mesmo nome da database registrda ali no arquivo orm **config.json**, no caso _blog_ ou o que você escolheu. E no banco precisamos criar a extenção **uuid-oosp**,um gerador de id padão postgres.
+- Baixado todas as dependências com npm, agora é preciso criar o banco via postgres com mesmo nome da database registrada ali no arquivo orm **config.json**, no caso _blog_ ou o que você escolheu. E no banco precisamos criar a extensão **uuid-oosp**,um gerador de id padrão postgres.
 - Executar as migrations:
 ```
 npm run typeorm migration:run
