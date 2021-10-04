@@ -6,7 +6,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('users')
+@Entity('user_tokens')
 class UserToken {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -25,32 +25,3 @@ class UserToken {
     updated_at: Date;
 }
 export default UserToken;
-/**
- * {
-                        name: 'id',
-                        type: 'uuid',
-                        isPrimary: true,
-                        generationStrategy: 'uuid',
-                        default: 'uuid_generate_v4()',
-                    },
-                    {
-                        name: 'token',
-                        type: 'uuid',
-                        generationStrategy: 'uuid',
-                        default: 'uuid_generate_v4()',
-                    },
-                    {
-                        name: 'user_id',
-                        type: 'uuid',
-                    },
-                    {
-                        name: 'created_at',
-                        type: 'timestamp',
-                        default: 'now()',
-                    },
-                    {
-                        name: 'updated_at',
-                        type: 'timestamp',
-                        default: 'now()',
-                    },
- */
