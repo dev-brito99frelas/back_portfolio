@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import SessionsController from '../controllers/SessionsController';
+import isAuthenticated from '../../../shared/http/middlewares/isAuthenticated';
 
 const sessionsRouter = Router();
 const sessionsController = new SessionsController();
-
+sessionsRouter.get('/', isAuthenticated, sessionsController.index);
 sessionsRouter.post(
     '/',
     celebrate({

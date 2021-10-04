@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import CreateSessionsService from '../services/CreateSessionsService';
+import ListUserService from '../services/ListUserService';
 
 export default class SessionsController {
     public async create(
@@ -13,5 +14,14 @@ export default class SessionsController {
             password,
         });
         return response.json(user);
+    }
+
+    public async index(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const listUser = new ListUserService();
+        const users = await listUser.execute();
+        return response.json(users);
     }
 }
