@@ -1,8 +1,10 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { errors } from 'celebrate';
+// import { pagination } from 'typeorm-pagination';
 import routes from './../routes';
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
@@ -10,6 +12,8 @@ import uploadconfig from '@config/upload';
 
 const app = express();
 app.use(express.json());
+// app.use(pagination);
+
 app.use(cors());
 app.use('/files', express.static(uploadconfig.directory));
 app.use(routes);
@@ -37,5 +41,5 @@ app.use(
 );
 
 app.listen(3333, () => {
-    console.log('Api do meu blog rodando liso...:robot:');
+    console.log('Api rodando :.:..:..:..:..:');
 });
