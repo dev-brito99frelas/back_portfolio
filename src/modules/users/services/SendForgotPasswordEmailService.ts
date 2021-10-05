@@ -1,8 +1,8 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
-import User from '../typeorm/entities/User';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 import UserTokensRepository from '../typeorm/repositories/UserTokensRepository';
+import EtherialMail from '@config/mail/EtherialMail';
 
 interface IRequest {
     email: string;
@@ -16,9 +16,23 @@ class SendForgotPasswordEmailService {
         if (!user) {
             throw new AppError(' Users not exist');
         }
-        const token = await userTokensRepository.generate(user.id);
+        const { token } = await userTokensRepository.generate(user.id);
 
-        console.log(token);
+        // console.log(token);
+        await EtherialMail.sendMail({
+            to: {
+                name: user.name,
+                email: user.email,
+            },
+            subject: '[Api portifolio recuperação de senha',
+            templateData: {
+                template: `Olá {{name}}: {{token}} `,
+                variables: {
+                    name: user.name,
+                    token,
+                },
+            },
+        });
     }
 }
 export default SendForgotPasswordEmailService;
