@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 import UserTokensRepository from '../typeorm/repositories/UserTokensRepository';
 import EtherialMail from '@config/mail/EtherialMail';
+import path from 'path';
 
 interface IRequest {
     email: string;
@@ -17,8 +18,12 @@ class SendForgotPasswordEmailService {
             throw new AppError(' Users not exist');
         }
         const { token } = await userTokensRepository.generate(user.id);
-
-        // console.log(token);
+        const forgotPasswordTempalte = path.resolve(
+            __dirname,
+            '..',
+            'views',
+            'forgot_password.hbs',
+        );
         await EtherialMail.sendMail({
             to: {
                 name: user.name,
@@ -26,10 +31,10 @@ class SendForgotPasswordEmailService {
             },
             subject: '[Api portifolio recuperação de senha',
             templateData: {
-                template: `Olá {{name}}: {{token}} `,
+                file: forgotPasswordTempalte,
                 variables: {
                     name: user.name,
-                    token,
+                    link: `http://localhost:3000/reset_password?token=${token}`,
                 },
             },
         });
