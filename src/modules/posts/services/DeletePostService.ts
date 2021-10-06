@@ -1,6 +1,7 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import PostRepository from '../typeorm/repositories/PostsRepository';
+import RedisCache from '@shared/cache/RedisCache';
 
 interface IRequest {
     id: string;
@@ -12,6 +13,8 @@ class DeletePostService {
         if (!post) {
             throw new AppError('post not found');
         }
+        const redisCache = new RedisCache();
+        await redisCache.inavalidate('api-porfitolio-POSTS_LIST');
         await postsRepository.remove(post);
     }
 }

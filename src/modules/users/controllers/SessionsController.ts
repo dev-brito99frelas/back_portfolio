@@ -1,3 +1,4 @@
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import CreateSessionsService from '../services/CreateSessionsService';
 import ListUserService from '../services/ListUserService';
@@ -13,7 +14,7 @@ export default class SessionsController {
             email,
             password,
         });
-        return response.json(user);
+        return response.json(classToClass(user));
     }
 
     public async index(
@@ -22,6 +23,6 @@ export default class SessionsController {
     ): Promise<Response> {
         const listUser = new ListUserService();
         const users = await listUser.execute();
-        return response.json(users);
+        return response.json(classToClass(users));
     }
 }

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
+import { classToClass } from 'class-transformer';
 
 export default class UserAvatarController {
     public async update(
@@ -8,11 +9,11 @@ export default class UserAvatarController {
     ): Promise<Response> {
         const updateAvatar = new UpdateUserAvatarService();
 
-        const user = updateAvatar.execute({
+        const user = await updateAvatar.execute({
             user_id: request.user.id,
             avatarFilename: request.file.filename,
         });
 
-        return response.json(user);
+        return response.json(classToClass(user));
     }
 }

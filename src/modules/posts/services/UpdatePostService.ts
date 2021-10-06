@@ -2,6 +2,7 @@ import AppError from '@shared/errors/AppError';
 import Post from '../typeorm/entities/Post';
 import { getCustomRepository } from 'typeorm';
 import PostRepository from '../typeorm/repositories/PostsRepository';
+import RedisCache from '@shared/cache/RedisCache';
 
 interface IRequest {
     id: string;
@@ -25,6 +26,8 @@ class UpdatePostService {
         if (postExists) {
             throw new AppError('There is alredy one post whit this name');
         }
+        const redisCache = new RedisCache();
+        await redisCache.inavalidate('api-porfitolio-POSTS_LIST');
         post.title = title;
         post.content = content;
         post.img_url = img_url;
