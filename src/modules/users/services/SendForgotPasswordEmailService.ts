@@ -4,6 +4,8 @@ import UsersRepository from '../typeorm/repositories/UsersRepository';
 import UserTokensRepository from '../typeorm/repositories/UserTokensRepository';
 import EtherialMail from '@config/mail/EtherialMail';
 import path from 'path';
+import SESMail from '@config/mail/SESMail';
+import mailConfig from '@config/mail/mail';
 
 interface IRequest {
     email: string;
@@ -24,6 +26,23 @@ class SendForgotPasswordEmailService {
             'views',
             'forgot_password.hbs',
         );
+        if (mailConfig.drive === 'ses') {
+            await SESMail.sendMail({
+                to: {
+                    name: user.name,
+                    email: user.email,
+                },
+                subject: '[Api portifolio recuperação de senha',
+                templateData: {
+                    file: forgotPasswordTempalte,
+                    variables: {
+                        name: user.name,
+                        link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
+                    },
+                },
+            });
+            return;
+        }
         await EtherialMail.sendMail({
             to: {
                 name: user.name,
