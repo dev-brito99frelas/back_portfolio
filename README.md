@@ -1,8 +1,8 @@
 # blogdoCL
 ## Necessário para executar  
 - Ter node instalado em sua máquina  
-- Ter uma instância do Postgres rodando em sua máquina na porta 5432
-- Ter uma instancia do redis rodando na porta 6379
+- Ter uma instância do **Postgres rodando em sua máquina na porta 5432**
+- Ter uma instancia do **redis rodando na porta 6379**
 - Criar na raiz do desse projeto um arquivo de nome **ormconfig.json** com a seguinte configuração de banco,"ou parecida":  
 ```
 {
