@@ -40,6 +40,16 @@ export class CreateProjects1634501035515 implements MigrationInterface {
                         default: 'now()',
                     },
                 ],
+                foreignKeys: [
+                    {
+                        name: 'ProjectsofUser',
+                        referencedTableName: 'users', //qual tabela se referenciando
+                        referencedColumnNames: ['id'], //qual campo da tabela referenciada
+                        columnNames: ['id'], //qual atributo usado para refenciar
+                        onDelete: 'CASCADE', //quando deletada o user o que acontece com essas info
+                        onUpdate: 'CASCADE',
+                    },
+                ],
             }),
         );
     }
