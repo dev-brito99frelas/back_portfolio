@@ -1,4 +1,3 @@
-# blogdoCL
 ## Necessário para executar  
 - Ter node instalado em sua máquina  
 - Ter uma instância do **Postgres rodando em sua máquina na porta 5432**
